@@ -1,12 +1,29 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import tracker from "../apis/tracker";
+
 import TaskList from "./tasks/TaskList";
+import TaskDelete from "./tasks/TaskDelete";
+import TaskEdit from "./tasks/TaskEdit";
+import TaskShow from "./tasks/TaskShow";
+import TaskCreate from "./tasks/TaskCreate";
+
+import Home from "./Home";
+
+console.log("TaskList", TaskList);
 
 const App = () => {
   return (
     <div className="uk-container">
-      <TaskList />
+      <Router>
+        <Route path="/" exact component={Home} />
+        <Route path="/tasks" exact component={TaskList} />
+        <Route path="/tasks/edit/:id" exact component={TaskEdit} />
+        <Route path="/tasks/delete/:id" exact component={TaskDelete} />
+        <Route path="/tasks/:id" exact component={TaskShow} />
+        <Route path="/tasks/new/:id" exact component={TaskCreate} />
+      </Router>
     </div>
   );
 };
