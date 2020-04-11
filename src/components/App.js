@@ -17,12 +17,14 @@ const App = () => {
   return (
     <div className="uk-container">
       <Router>
-        <Route path="/" exact component={Home} />
-        <Route path="/tasks" exact component={TaskList} />
-        <Route path="/tasks/edit/:id" exact component={TaskEdit} />
-        <Route path="/tasks/delete/:id" exact component={TaskDelete} />
-        <Route path="/tasks/:id" exact component={TaskShow} />
-        <Route path="/tasks/new/:id" exact component={TaskCreate} />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/tasks" exact component={TaskList} />
+          <Route path="/tasks/new" exact component={TaskCreate} />
+          <Route path="/tasks/edit/:id" exact component={TaskEdit} />
+          <Route path="/tasks/delete/:id" exact component={TaskDelete} />
+          <Route path="/tasks/:id" exact component={TaskShow} />
+        </Switch>
       </Router>
     </div>
   );
