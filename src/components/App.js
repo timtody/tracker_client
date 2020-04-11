@@ -11,8 +11,6 @@ import TaskCreate from "./tasks/TaskCreate";
 
 import Home from "./Home";
 
-console.log("TaskList", TaskList);
-
 const App = () => {
   return (
     <div className="uk-container">
