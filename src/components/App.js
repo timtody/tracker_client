@@ -10,11 +10,17 @@ import TaskShow from "./tasks/TaskShow";
 import TaskCreate from "./tasks/TaskCreate";
 
 import Home from "./Home";
+import Header from "./Header";
+import Breadcrumb from "./Breadcrumb";
 
 const App = () => {
   return (
     <div className="uk-container">
       <Router>
+        <Header />
+        {/* divider */}
+        <hr />
+        <Breadcrumb />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/tasks" exact component={TaskList} />
