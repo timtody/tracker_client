@@ -1,36 +1,38 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 
-import tracker from "../apis/tracker";
+import List from "./objects/List";
+import Create from "./objects/Create";
+import Edit from "./objects/Edit";
+import Delete from "./objects/Delete";
+import Show from "./objects/Show";
 
-import TaskList from "./tasks/TaskList";
-import TaskDelete from "./tasks/TaskDelete";
-import TaskEdit from "./tasks/TaskEdit";
-import TaskShow from "./tasks/TaskShow";
-import TaskCreate from "./tasks/TaskCreate";
-
-import Home from "./Home";
+import history from "../history";
+import Dashboard from "./Dashboard";
 import Header from "./Header";
-import Breadcrumb from "./Breadcrumb";
+import Sidebar from "./Drawer";
+
+import Moment from "moment";
+import momentLocalizer from "react-widgets-moment";
+
+Moment.locale("en");
+momentLocalizer();
 
 const App = () => {
   return (
-    <div className="uk-container">
-      <Router>
-        <Header />
-        {/* divider */}
-        <hr />
-        <Breadcrumb />
+    <Router history={history}>
+      <Header />
+      <Sidebar>
         <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/tasks" exact component={TaskList} />
-          <Route path="/tasks/new" exact component={TaskCreate} />
-          <Route path="/tasks/edit/:id" exact component={TaskEdit} />
-          <Route path="/tasks/delete/:id" exact component={TaskDelete} />
-          <Route path="/tasks/:id" exact component={TaskShow} />
+          <Route path="/" exact component={Dashboard} />
+          <Route path="/:model" exact component={List} />
+          <Route path="/:model/new" exact component={Create} />
+          <Route path="/:model/edit/:id" exact component={Edit} />
+          <Route path="/:model/delete/:id" exact component={Delete} />
+          <Route path="/tasks/:id" exact component={Show} />
         </Switch>
-      </Router>
-    </div>
+      </Sidebar>
+    </Router>
   );
 };
 
